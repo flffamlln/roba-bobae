@@ -9,7 +9,7 @@ function windowResized() {
 }
 
 function draw() {
-  background(220);
+  background(255);
 
   if (mode == 0) {
     screen1();
@@ -23,7 +23,11 @@ function draw() {
 
 //Useful to have multiple elements on one screen
 function screen1() {
-  ellipse(windowWidth / 2, windowHeight / 2, 300, 300);
+  // Home Screen
+  noStroke();
+  fill('#F1DFEC');
+  rectMode(CENTER);
+  rect(width/2, height/2, 500, 600, 15);
 }
 
 function screen2() {
