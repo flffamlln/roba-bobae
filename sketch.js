@@ -1,4 +1,21 @@
-var mode = 0
+let mode = 0;
+let instruction = 0;
+
+let honey;
+let matcha;
+let syrup;
+let taro;
+let thai;
+let milk;
+
+function preload(){
+  honey = loadImage('graphics/Honey.png');
+  matcha = loadImage('graphics/Matcha Powder.png');
+  syrup = loadImage('graphics/Simple Syrup.png');
+  taro = loadImage('graphics/Taro Powder.png');
+  thai = loadImage('graphics/Thai Tea.png');
+  milk = loadImage('graphics/Whole Milk.png');
+}
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -14,7 +31,7 @@ function draw() {
   if (mode == 0) {
     homeScreen();
   } else if (mode == 1) {
-    screen2();
+    introScreen();
   } else if (mode == 2) {
     screen3();
   }
@@ -76,15 +93,81 @@ function homeScreen() {
   }
 }
 
-function screen2() {
-  rect(50, 50, 300, 300);
+// Intro Screen
+function introScreen() {
+  // Background
+  noStroke();
+  background('#FCF5F0');
+
+  // Shelves
+  strokeWeight(1);
+  stroke(0);
+  fill('#F1DFEC');
+  rectMode(CENTER);
+  rect(0, 200, 1200, 100);
+  rect(0, 480, 1200, 100);
+
+  // Render all ingredients
+  let liquids = [honey, syrup, milk];
+  let powders = [matcha, taro, thai];
+
+  for(let i = 0; i < liquids.length; i++){
+    image(liquids[i], 70 + 150 * i, 250);
+    liquids[i].resize(175, 275);
+
+    image(powders[i], 150 * i, 0);
+    powders[i].resize(300, 300);
+  }
+
+  instructions();
+}
+
+function instructions(){
+  // Instruction box
+  strokeWeight(1);
+  stroke(0);
+  fill(255);
+  rectMode(CENTER);
+  rect(width/2, height/2, 500, 200, 15);
+
+  // Instruction text rendering
+  let txt;
+  if (instruction == 0) {
+    txt = "Welcome to roba-boba!"
+
+  } else if (instruction == 1) {
+    txt = "A hundred years into the future, \n humans have migrated outside of planet Earth."
+
+  } else if (instruction == 2) {
+    txt = "Robots have also gained consciousness. \n Thankfully they aren't trying to overrun the world."
+
+  } else if (instruction == 3) {
+    txt = "A couple of robots have decided to pursue \n their passion project of opening their very own boba shop!"
+
+  } else if (instruction == 4) {
+    txt = "You are a newly hired robot boba barista."
+
+  } else if (instruction == 5) {
+    txt = "Try to keep up and serve as many delicious \n boba teas to customers before the timer runs out!"
+
+  } else if (instruction == 6) {
+    txt = "Remember, customers care about drinks made accurately!!! \n This will reflect in your point accumulation."
+
+  } else if (instruction == 7) {
+    txt = "Good luck!!!"
+  }
+
+  noStroke();
+  fill(0);
+  textSize(18);
+  text(txt, width/2, height/2);
+  textAlign(CENTER);
 }
 
 function screen3() {
   line(0, 0, windowWidth, windowHeight);
   line(0, windowWidth, windowWidth, 0);
 }
-
 
 //Method 1: More flexible, any order
 function mousePressed() {
@@ -101,7 +184,11 @@ function mousePressed() {
         mode = 1;
     }
   } else if (mode == 1) {
-    mode = 2;
+    if(instruction < 7){
+      instruction++;
+    } else{
+      mode = 2;
+    }
   } else if (mode == 2) {
     mode = 0;
   }
