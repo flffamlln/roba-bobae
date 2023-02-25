@@ -133,28 +133,28 @@ function instructions(){
   // Instruction text rendering
   let txt;
   if (instruction == 0) {
-    txt = "Welcome to roba-boba!"
+    txt = "Welcome to roba-boba! (1/8)"
 
   } else if (instruction == 1) {
-    txt = "A hundred years into the future, \n humans have migrated outside of planet Earth."
+    txt = "A hundred years into the future, \n humans have migrated outside of planet Earth. (2/8)"
 
   } else if (instruction == 2) {
-    txt = "Robots have also gained consciousness. \n Thankfully they aren't trying to overrun the world."
+    txt = "Robots have also gained consciousness. \n Thankfully they aren't trying to overrun the world. (3/8)"
 
   } else if (instruction == 3) {
-    txt = "A couple of robots have decided to pursue \n their passion project of opening their very own boba shop!"
+    txt = "A couple of robots have decided to \n pursue their passion project of  \n opening their very own boba shop! (4/8)"
 
   } else if (instruction == 4) {
-    txt = "You are a newly hired robot boba barista."
+    txt = "You are a newly hired robot boba barista. (5/8)"
 
   } else if (instruction == 5) {
-    txt = "Try to keep up and serve as many delicious \n boba teas to customers before the timer runs out!"
+    txt = "Try to keep up and serve as many delicious \n boba teas to customers before the timer runs out! (6/8)"
 
   } else if (instruction == 6) {
-    txt = "Remember, customers care about drinks made accurately!!! \n This will reflect in your point accumulation."
+    txt = "Remember, customers care about \n drinks made accurately!!! \n This will reflect in your point accumulation. (7/8)"
 
   } else if (instruction == 7) {
-    txt = "Good luck!!!"
+    txt = "Good luck!!! (8/8)"
   }
 
   noStroke();
@@ -187,6 +187,7 @@ function mousePressed() {
     if(instruction < 7){
       instruction++;
     } else{
+      instruction = 0;
       mode = 2;
     }
   } else if (mode == 2) {
