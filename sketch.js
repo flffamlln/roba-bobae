@@ -12,7 +12,7 @@ function draw() {
   background(255);
 
   if (mode == 0) {
-    screen1();
+    homeScreen();
   } else if (mode == 1) {
     screen2();
   } else if (mode == 2) {
@@ -23,7 +23,7 @@ function draw() {
 
 // Useful to have multiple elements on one screen
 // Home Screen
-function screen1() {
+function homeScreen() {
   // Menu Box
   noStroke();
   fill('#F1DFEC');
@@ -89,7 +89,17 @@ function screen3() {
 //Method 1: More flexible, any order
 function mousePressed() {
   if (mode == 0) {
-    mode = 1;
+    console.log(width/2);
+    console.log(height/2);
+    console.log(mouseX);
+    console.log(mouseY);
+    if(
+      mouseX >= width/2 - 150 && 
+      mouseX <= width/2 + 150 &&
+      mouseY >= height/2 - 85 &&
+      mouseY <= height/2 - 15){
+        mode = 1;
+    }
   } else if (mode == 1) {
     mode = 2;
   } else if (mode == 2) {
