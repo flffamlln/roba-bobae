@@ -2,14 +2,16 @@ let mode = 0;
 let instruction = 0;
 let timer = 300;
 
+let cafe;
+let kitchen;
+let robot;
+
 let honey;
 let matcha;
 let syrup;
 let taro;
 let thai;
 let milk;
-let cafe;
-let robot;
 let brownbt;
 
 let liquids;
@@ -42,14 +44,17 @@ let points = 0;
 let makingDrinks = false;
 
 function preload(){
+  cafe = loadImage('graphics/Cafe.png');
+  kitchen = loadImage('graphics/Drink Making Scene.png');
+  robot = loadImage('graphics/Robot.png');
+
   honey = loadImage('graphics/Honey.png');
   matcha = loadImage('graphics/Matcha Powder.png');
   syrup = loadImage('graphics/Simple Syrup.png');
   taro = loadImage('graphics/Taro Powder.png');
   thai = loadImage('graphics/Thai Tea.png');
   milk = loadImage('graphics/Whole Milk.png');
-  cafe = loadImage('graphics/Cafe.png');
-  robot = loadImage('graphics/Robot.png');
+
   brownbt = loadImage('graphics/Brown Boba Tea.png');
   purplebt = loadImage('graphics/Purple Boba Tea.png');
 
@@ -256,16 +261,26 @@ function play() {
     imageMode(CENTER);
     image(cafe, width/2, height/2, 800, 600);
 
-    // Order count
+    // Instructions
     noStroke();
     fill(0);
-    textSize(24);
-    text("Orders to make: " + orderCount, width/2 - 330, height/2 + 250);
+    textSize(18);
+    textAlign(CENTER);
+    text("Click on customer robots with exclamation points to receive their order!", width/2, height/2 + 320);
 
     enterCustomer();
   } else{
-
+    // Add kitchen background
+    imageMode(CENTER);
+    image(kitchen, width/2, height/2, 900, 600);
   }
+
+  // Order count
+  textAlign(LEFT);
+  noStroke();
+  fill(0);
+  textSize(18);
+  text("Orders to make: " + orderCount, width/2 - 330, height/2 + 250);
 
   // Quit Button
   strokeWeight(5);
@@ -440,30 +455,42 @@ function mouseClicked() {
       orders = [];
       makingDrinks = false;
       orderAccepted = false;
-    } else if( // Clicked on a message bubble
-      mouseX >= cX - 50 &&
-      mouseX <= cX + 50 &&
-      mouseY >= cY - 140 &&
-      mouseY <= cY + 0
-    ) {
-      if(!orderAccepted){
-        orderCount++;
-        
-        orders.push({
-          "tea": tea[Math.floor(Math.random() * 3)],
-          "liquid": liquids[Math.floor(Math.random() * 3)],
-          "boba": boba[Math.floor(Math.random() * 2)]
-        });
+    } else if(
+      !makingDrinks){
+        if(
+          // Clicked on a message bubble
+          mouseX >= cX - 50 &&
+          mouseX <= cX + 50 &&
+          mouseY >= cY - 140 &&
+          mouseY <= cY + 0
+        ){
+          if(!orderAccepted){
+            orderCount++;
+            
+            orders.push({
+              "tea": tea[Math.floor(Math.random() * 3)],
+              "liquid": liquids[Math.floor(Math.random() * 3)],
+              "boba": boba[Math.floor(Math.random() * 2)]
+            });
+          }
+          orderAccepted = true;
+        } else if(  // Clicked on Make Drinks button
+          mouseX >= width/2 + 40 &&
+          mouseX <= width/2 + 340 &&
+          mouseY >= height/2 + 170 &&
+          mouseY <= height/2 + 250
+        ){
+          makingDrinks = true;
+        }
+    } else if(makingDrinks){
+      if(
+        mouseX >= width/2 + 160 &&
+        mouseX <= width/2 + 385 &&
+        mouseY >= height/2 + 185 &&
+        mouseY <= height/2 + 260
+      ){
+        makingDrinks = false;
       }
-      orderAccepted = true;
-    } else if(  // Clicked on Make Drinks button
-      mouseX >= width/2 + 40 &&
-      mouseX <= width/2 + 340 &&
-      mouseY >= height/2 + 170 &&
-      mouseY <= height/2 + 250
-    ){
-      makingDrinks = true;
-      console.log("CLICKED");
     }
   } else if (mode == 3){
     mode = 0;
