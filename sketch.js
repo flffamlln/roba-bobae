@@ -100,7 +100,8 @@ function homeScreen() {
   }
 
   // Menu Box
-  noStroke();
+  strokeWeight(5);
+  stroke("#DED5F5");
   fill('#F1DFEC');
   rectMode(CENTER);
   rect(width/2, height/2, 500, 650, 15);
@@ -182,6 +183,14 @@ function introScreen() {
   // Render Robot
   image(robot, windowWidth - 400, 150);
   robot.resize(300, 450);
+
+  // Skip Instructions Text
+  strokeWeight(5);
+  stroke(255);
+  fill('#826464');
+  textSize(40);
+  text("roba-boba's story", width/2, height/2 - 150);
+  textAlign(CENTER);
 
   instructions();
 
@@ -392,8 +401,8 @@ function mouseClicked() {
     if(
       mouseX <= width/2 + 110 &&
       mouseX >= width/2 - 110 &&
-      mouseY <= height/2 + 130 &&
-      mouseY >= height/2 + 70){
+      mouseY <= height/2 + 190 &&
+      mouseY >= height/2 + 130){
       instruction = 0;
       mode = 2;
     } else{ // If press outside skip intro button
