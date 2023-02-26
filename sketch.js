@@ -136,7 +136,7 @@ function introScreen() {
   // Skip Instructions Button
    strokeWeight(1);
    stroke(0);
-   fill("#EEDFD4");
+   fill("#B4D1AB");
    rectMode(CENTER);
    rect(width/2, height/2 + 100, 200, 50, 15);
 
@@ -191,7 +191,7 @@ function play() {
   // Quit Button
   strokeWeight(1);
   stroke(0);
-  fill(255);
+  fill("#B4D1AB");
   rect(width - 200, 50, 200, 50, 15);
 
   // Quit Text
@@ -258,7 +258,17 @@ function mousePressed() {
       }
     }
   } else if (mode == 2) {
+    if(
+      // rect(width - 200, 50, 200, 50, 15);
+      mouseX >= width - 300 &&
+      mouseX <= width - 100 &&
+      mouseY >= 25 &&
+      mouseY <= 75
+    ){
+      mode = 3;
+      timer = 300;
+    }
+  } else if (mode == 3){
     mode = 0;
-    timer = 300;
   }
 }
