@@ -23,6 +23,10 @@ let customer8;
 let customer9;
 let customer10;
 
+let cIndex;
+let cX;
+let cY;
+
 function preload(){
   honey = loadImage('graphics/Honey.png');
   matcha = loadImage('graphics/Matcha Powder.png');
@@ -44,11 +48,13 @@ function preload(){
   customer7 = loadImage('graphics/Customer7.png');
   customer8 = loadImage('graphics/Customer8.png');
   customer9 = loadImage('graphics/Customer9.png');
-  customer10 = loadImage('graphics/Customer10.png');
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    cIndex = 0;
+    cX = width - 400;
+    cY = height/2 + 30;
 }
 
 function windowResized() {
@@ -221,6 +227,8 @@ function play() {
   imageMode(CENTER);
   image(cafe, width/2, height/2, 800, 600);
 
+  enterCustomer();
+
   // Quit Button
   strokeWeight(1);
   stroke(0);
@@ -307,10 +315,19 @@ function endScreen() {
 
 function enterCustomer(){
   //Render all customers
-  customers = [customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10];
-  for(let i = 0; i < customers.length; i++){
-    image(customers[i], 70 + 150 * i, 250);
-    customers[i].resize(175, 275);
+  let customers = [customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9];
+  
+  image(customers[cIndex], cX, cY);
+  customers[cIndex].resize(700, 700);
+
+  cX -= Math.random() * 3;
+
+  if(cX < 410){
+    cIndex++;
+    if(cIndex > 8){
+      cIndex = 0;
+    }
+    cX = width - 400;
   }
 }
 
