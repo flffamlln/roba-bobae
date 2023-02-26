@@ -2,6 +2,17 @@ let mode = 0;
 let instruction = 0;
 let timer = 300;
 
+let steps = {
+  "cup": false, 
+  "boba": false,
+  "honey": false,
+  "milk": false,
+  "syrup": false,
+  "thai": false,
+  "matcha": false,
+  "taro": false
+};
+
 let cafe;
 let kitchen;
 let robot;
@@ -47,10 +58,14 @@ let orders = [];
 let points = 0;
 let makingDrinks = false;
 
+let emptyCup;
+
 function preload(){
   cafe = loadImage('graphics/Cafe.png');
   kitchen = loadImage('graphics/Drink Making Scene.png');
   robot = loadImage('graphics/Robot.png');
+
+  emptyCup = loadImage('graphics/Empty Cup.png');
 
   honey = loadImage('graphics/Honey.png');
   matcha = loadImage('graphics/Matcha Powder.png');
@@ -280,12 +295,110 @@ function play() {
     imageMode(CENTER);
     image(kitchen, width/2, height/2, 900, 600);
 
+    if(steps["cup"]){
+      image(emptyCup, width/2, height/2 + 70, 400, 300);
+      if(steps["boba"]){
+
+      }
+      if(steps["matcha"]){
+        if(steps["syrup"]){
+
+        } else if(steps["honey"]){
+
+        } else if(steps["milk"]){
+
+        } else{
+          
+        }
+      }
+      if(steps["taro"]){
+        if(steps["syrup"]){
+
+        } else if(steps["honey"]){
+
+        } else if(steps["milk"]){
+
+        } else{
+          
+        }
+      }
+      if(steps["thai"]){
+        if(steps["syrup"]){
+
+        } else if(steps["honey"]){
+
+        } else if(steps["milk"]){
+
+        } else{
+          
+        }
+      }
+      
+
+    }
+    // Rect for cups
+    noFill();
+    stroke(0);
+    strokeWeight(4);
+    rectMode(CORNER);
+    rect(width/2-165, height/2-160, 70, 70);
+
+    // Rect for thai
+    noFill();
+    stroke(0);
+    strokeWeight(4);
+    rectMode(CORNER);
+    rect(width/2-260, height/2-140, 75, 75);
+
+    // Rect for taro
+    noFill();
+    stroke(0);
+    strokeWeight(4);
+    rectMode(CORNER);
+    rect(width/2-340, height/2-140, 75, 75);
+
+    // Rect for matcha
+    noFill();
+    stroke(0);
+    strokeWeight(4);
+    rectMode(CORNER);
+    rect(width/2-420, height/2-140, 75, 75);
+
+    // Rect for boba
+    noFill();
+    stroke(0);
+    strokeWeight(4);
+    rectMode(CORNER);
+    rect(width/2-20, height/2-200, 145, 170);
+
+    // Rect for syrup
+    noFill();
+    stroke(0);
+    strokeWeight(4);
+    rectMode(CORNER);
+    rect(width/2+150, height/2-200, 60, 140);
+
+    // Rect for honey
+    noFill();
+    stroke(0);
+    strokeWeight(4);
+    rectMode(CORNER);
+    rect(width/2+250, height/2-200, 60, 140);
+
+    // Rect for milk
+    noFill();
+    stroke(0);
+    strokeWeight(4);
+    rectMode(CORNER);
+    rect(width/2+350, height/2-200, 60, 140);
+
+    rectMode(CENTER);
     if(orders.length > 0){
       // Show current order
       strokeWeight(1);
       stroke(1);
       fill('#EEDFD4');
-      rect(160, 400, 250, 400, 0);
+      rect(160, 350, 250, 440, 0);
 
       // Order count
       textAlign(LEFT);
@@ -354,6 +467,16 @@ function play() {
     curOrder = 0;
     orders = [];
     makingDrinks = false;
+    steps = {
+      "cup": false, 
+      "boba": false,
+      "honey": false,
+      "milk": false,
+      "syrup": false,
+      "thai": false,
+      "matcha": false,
+      "taro": false
+    };
   }
 }
 
@@ -480,6 +603,16 @@ function mouseClicked() {
       mode = 3;
       timer = 300;
       orderCount = 0;
+      steps = {
+        "cup": false, 
+        "boba": false,
+        "honey": false,
+        "milk": false,
+        "syrup": false,
+        "thai": false,
+        "matcha": false,
+        "taro": false
+      };
       curOrder = 0;
       orders = [];
       makingDrinks = false;
@@ -512,13 +645,53 @@ function mouseClicked() {
           makingDrinks = true;
         }
     } else if(makingDrinks){
-      if(
+      if( // Click return to cashier
         mouseX >= width/2 + 160 &&
         mouseX <= width/2 + 385 &&
         mouseY >= height/2 + 185 &&
         mouseY <= height/2 + 260
       ){
         makingDrinks = false;
+      } else if( // CUPS: rect(width/2-165, height/2-160, 70, 70);
+        mouseX >= width/2-165 &&
+        mouseX <= width/2-95 &&
+        mouseY >= height/2-180 &&
+        mouseY <= height/2-110
+      ){
+        console.log("CLICKED CUPS");
+        steps["cup"] = true;
+      } else if( // THAI:    rect(width/2-260, height/2-140, 75, 75);
+        mouseX >= width/2-260 &&
+        mouseX <= width/2-185 &&
+        mouseY >= height/2-140 &&
+        mouseY <= height/2-65
+      ){
+        console.log("CLICKED THAI");
+        steps["thai"] = true;
+      } else if( // TARO:     rect(width/2-340, height/2-140, 75, 75);
+        mouseX >= width/2-340 &&
+        mouseX <= width/2-265 &&
+        mouseY >= height/2-140 &&
+        mouseY <= height/2-65
+      ){
+        console.log("CLICKED TARO");
+        steps["taro"] = true;
+      } else if( // MATCHA:     rect(width/2-420, height/2-140, 75, 75);
+        mouseX >= width/2-420 &&
+        mouseX <= width/2-345 &&
+        mouseY >= height/2-140 &&
+        mouseY <= height/2-65
+      ){
+        console.log("CLICKED MATCHA");
+        steps["matcha"] = true;
+      } else if( // BOBA: rect(width/2-20, height/2-200, 145, 170);
+        mouseX >= width/2-20 &&
+        mouseX <= width/2-345 &&
+        mouseY >= height/2-140 &&
+        mouseY <= height/2-65
+      ){
+        console.log("CLICKED BOBA");
+        steps["boba"] = true;
       }
     }
   } else if (mode == 3){
