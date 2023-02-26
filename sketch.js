@@ -184,23 +184,35 @@ function instructions(){
 }
 
 function play() {
+  // Add cafe background
   imageMode(CENTER);
   image(cafe, width/2, height/2, 800, 600);
 
-  line(0, 0, windowWidth, windowHeight);
-  line(0, windowWidth, windowWidth, 0);
+  // Quit Button
+  strokeWeight(1);
+  stroke(0);
+  fill(255);
+  rect(width - 200, 50, 200, 50, 15);
 
-  // Seconds left text
+  // Quit Text
+  noStroke();
+  fill(0);
+  textSize(24);
+  text("End game", width-250, 60);
+  textAlign(CENTER);
+
+  // Time left text
+  fill(0);
   textSize(36);
   textAlign(LEFT);
   text("Time left: " + timer, 50, 50);
 
-  // Seconds update
+  // Updating time after each second
   if (frameCount % 60 == 0 && timer > 0) {
     timer--;
   }
 
-  // If time up, game over
+  // If time up, switch to score screen
   if (timer == 0) {
     mode = 3;
   }
@@ -215,7 +227,6 @@ function endScreen() {
   textAlign(CENTER);
 }
 
-//Method 1: More flexible, any order
 function mousePressed() {
   if (mode == 0) {
     console.log(width/2);
@@ -251,11 +262,3 @@ function mousePressed() {
     timer = 300;
   }
 }
-
-//Method 2: Can only go in order
-// function mousePressed(){
-//   mode=mode+1;
-//   if (mode==3) {
-//     mode=0;
-//   }
-//   print(mode);
