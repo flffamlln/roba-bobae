@@ -1,5 +1,6 @@
 let mode = 0;
 let instruction = 0;
+let timer = 300;
 
 let honey;
 let matcha;
@@ -8,6 +9,7 @@ let taro;
 let thai;
 let milk;
 let cafe;
+let robot;
 
 function preload(){
   honey = loadImage('graphics/Honey.png');
@@ -17,6 +19,7 @@ function preload(){
   thai = loadImage('graphics/Thai Tea.png');
   milk = loadImage('graphics/Whole Milk.png');
   cafe = loadImage('graphics/Cafe.png');
+  robot = loadImage('graphics/Robot.png');
 }
 
 function setup() {
@@ -36,6 +39,8 @@ function draw() {
     introScreen();
   } else if (mode == 2) {
     play();
+  } else if (mode == 3){
+    endScreen();
   }
 }
 
@@ -122,6 +127,10 @@ function introScreen() {
     powders[i].resize(300, 300);
   }
 
+  // Render Robot
+  image(robot, windowWidth - 400, 150);
+  robot.resize(300, 450);
+
   instructions();
 
   // Skip Instructions Button
@@ -180,6 +189,30 @@ function play() {
 
   line(0, 0, windowWidth, windowHeight);
   line(0, windowWidth, windowWidth, 0);
+
+  // Seconds left text
+  textSize(36);
+  textAlign(LEFT);
+  text("Time left: " + timer, 50, 50);
+
+  // Seconds update
+  if (frameCount % 60 == 0 && timer > 0) {
+    timer--;
+  }
+
+  // If time up, game over
+  if (timer == 0) {
+    mode = 3;
+  }
+}
+
+function endScreen() {
+  // Game Over Text
+  noStroke();
+  fill(0);
+  textSize(18);
+  text('Game Over', width/2, height/2);
+  textAlign(CENTER);
 }
 
 //Method 1: More flexible, any order
@@ -215,6 +248,7 @@ function mousePressed() {
     }
   } else if (mode == 2) {
     mode = 0;
+    timer = 300;
   }
 }
 
