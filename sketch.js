@@ -30,6 +30,15 @@ let halfbrown;
 let halfgreen;
 let halfpurple;
 
+let whitebrown;
+let yellowbrown;
+
+let whitegreen;
+let yellowgreen;
+
+let whitepurple;
+let yellowpurple;
+
 let liquids;
 let tea;
 
@@ -78,6 +87,15 @@ function preload(){
   halfbrown = loadImage('graphics/Brown Boba Half Cup.png');
   halfgreen = loadImage('graphics/Green Boba Half Cup.png');
   halfpurple = loadImage('graphics/Purple Boba Half Cup.png');
+
+  whitebrown = loadImage('graphics/Brown Boba Full Cup + Milk.png');
+  yellowbrown = loadImage('graphics/Brown Boba Full Cup + Syrup.png');
+  
+  whitegreen = loadImage('graphics/Green Boba Full Cup + Milk.png');
+  yellowgreen  = loadImage('graphics/Green Boba Full Cup + Syrup.png');
+  
+  whitepurple = loadImage('graphics/Purple Boba Full Cup + Milk.png');
+  yellowpurple  = loadImage('graphics/Purple Boba Full Cup + Yellow Syrup.png');
 
   honey = loadImage('graphics/Honey.png');
   matcha = loadImage('graphics/Matcha Powder.png');
@@ -313,34 +331,32 @@ function play() {
         image(bobaInACup, width/2, height/2 + 70, 400, 300);
       }
       if(steps["matcha"]){
-        if(steps["syrup"]){
-
-        } else if(steps["honey"]){
-
+        if(steps["syrup"] || steps["honey"]){
+          image(yellowgreen, width/2, height/2 + 70, 400, 300);
         } else if(steps["milk"]){
-
+          image(whitegreen, width/2, height/2 + 70, 400, 300);
         } else{
           image(halfgreen, width/2, height/2 + 70, 400, 300);
         }
       }
       if(steps["taro"]){
         if(steps["syrup"]){
-
+          image(yellowpurple, width/2, height/2 + 70, 400, 300);
         } else if(steps["honey"]){
-
+          image(yellowpurple, width/2, height/2 + 70, 400, 300);
         } else if(steps["milk"]){
-
+          image(whitepurple, width/2, height/2 + 70, 400, 300);
         } else{
           image(halfpurple, width/2, height/2 + 70, 400, 300);
         }
       }
       if(steps["thai"]){
         if(steps["syrup"]){
-
+          image(yellowbrown, width/2, height/2 + 70, 400, 300);
         } else if(steps["honey"]){
-
+          image(yellowbrown, width/2, height/2 + 70, 400, 300);
         } else if(steps["milk"]){
-
+          image(whitebrown, width/2, height/2 + 70, 400, 300);
         } else{
           image(halfbrown, width/2, height/2 + 70, 400, 300);
         }
