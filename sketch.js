@@ -187,6 +187,11 @@ function homeScreen() {
   text('Play', width/2, height/2 - 40);
   textAlign(CENTER);
 
+  fill('#826464');
+  textSize(16);
+  text('Made by Bobae Team : )', width/2, height/2 + 300);
+
+  
   // Scoreboard Button Box
   strokeWeight(10);
   stroke(255);
@@ -675,10 +680,13 @@ function mouseClicked() {
         } else if( // BOBA: rect(width/2-20, height/2-200, 145, 170);
           mouseX >= width/2-20 &&
           mouseX <= width/2+125 &&
-          mouseY >= height/2-140 &&
+          mouseY >= height/2-230 &&
           mouseY <= height/2-65 &&
           steps["cup"]
         ){
+          if(!steps["boba"]){
+            points += 20;
+          }
           console.log("CLICKED BOBA");
           steps["boba"] = true;
         } else if( // SYRUP:     rect(width/2+150, height/2-200, 60, 140);
@@ -724,5 +732,6 @@ function mouseClicked() {
     }
   } else if (mode == 3){
     mode = 0;
+    points = 0;
   }
 }
