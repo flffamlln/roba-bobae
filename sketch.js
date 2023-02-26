@@ -29,6 +29,7 @@ let cY;
 
 let newOrder;
 let orderReceived;
+let orderAccepted;
 
 function preload(){
   honey = loadImage('graphics/Honey.png');
@@ -61,6 +62,7 @@ function setup() {
     cIndex = 0;
     cX = width - 400;
     cY = height/2 + 70;
+    orderAccepted = false;
 }
 
 function windowResized() {
@@ -326,12 +328,18 @@ function enterCustomer(){
   image(customers[cIndex], cX, cY);
   customers[cIndex].resize(600, 500);
 
-  image(newOrder, cX, cY - 130);
-  newOrder.resize(100, 100);
+  if(orderAccepted){
+    image(orderReceived, cX, cY - 130);
+    orderReceived.resize(100, 100);
+  } else{
+    image(newOrder, cX, cY - 130);
+    newOrder.resize(100, 100);
+  }
 
   cX -= Math.random() * 3;
 
   if(cX < 410){
+    orderAccepted = false;
     cIndex++;
     if(cIndex > 8){
       cIndex = 0;
@@ -340,7 +348,7 @@ function enterCustomer(){
   }
 }
 
-function mousePressed() {
+function mouseClicked() {
   if (mode == 0) {
     console.log(width/2);
     console.log(height/2);
@@ -372,7 +380,7 @@ function mousePressed() {
     }
   } else if (mode == 2) {
     if(
-      // rect(width - 200, 50, 200, 50, 15);
+      // click end game
       mouseX >= width - 300 &&
       mouseX <= width - 100 &&
       mouseY >= 25 &&
@@ -380,6 +388,14 @@ function mousePressed() {
     ){
       mode = 3;
       timer = 300;
+    } else if(
+      mouseX >= cX - 50 &&
+      mouseX <= cX + 50 &&
+      mouseY >= cY - 140 &&
+      mouseY <= cY + 0
+    ) {
+      console.log("CLICKED");
+      orderAccepted = true;
     }
   } else if (mode == 3){
     mode = 0;
