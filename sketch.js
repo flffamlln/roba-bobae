@@ -219,11 +219,48 @@ function play() {
 }
 
 function endScreen() {
-  // Game Over Text
+  // Menu Box
   noStroke();
+  fill('#EEDFD4');
+  rectMode(CENTER);
+  rect(width/2, height/2, 500, 650, 15);
+
+  // Roba-boba Logo
+  strokeWeight(5);
+  stroke(255);
+  fill('#826464');
+  textSize(64);
+  text('Game Over', width/2, height/2 - 150);
+  textAlign(CENTER);
+
+  // Your Score Is
+  strokeWeight(5);
+  stroke('#629742');
+  fill('#B4D1AB');
+  textSize(50);
+  text('Your Score Is', width/2, height/2 - 30);
+  textAlign(CENTER);
+
+  // Score Text
+  strokeWeight(5);
+  stroke('#629742');
+  fill('#B4D1AB');
+  textSize(50);
+  text('100 pts!', width/2, height/2 + 30);
+  textAlign(CENTER);
+
+  // Play Button Box
+  strokeWeight(10);
+  stroke(255);
+  fill('#EDEAF5');
+  rect(width/2, height/2 + 150, 300, 70, 15);
+
+  // Play Button Text
+  strokeWeight(5);
+  stroke(255);
   fill(0);
-  textSize(18);
-  text('Game Over', width/2, height/2);
+  textSize(30);
+  text('Return Home', width/2, height/2 + 160);
   textAlign(CENTER);
 }
 
