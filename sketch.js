@@ -31,6 +31,8 @@ let newOrder;
 let orderReceived;
 let orderAccepted;
 
+let orderCount = 0;
+
 function preload(){
   honey = loadImage('graphics/Honey.png');
   matcha = loadImage('graphics/Matcha Powder.png');
@@ -235,6 +237,12 @@ function play() {
   imageMode(CENTER);
   image(cafe, width/2, height/2, 800, 600);
 
+  // Order count
+  noStroke();
+  fill(0);
+  textSize(24);
+  text("Order count: " + orderCount, width/2 - 330, height/2 + 250);
+
   enterCustomer();
 
   // Quit Button
@@ -264,6 +272,7 @@ function play() {
   // If time up, switch to score screen
   if (timer == 0) {
     mode = 3;
+    orderCount = 0;
   }
 }
 
@@ -388,13 +397,16 @@ function mouseClicked() {
     ){
       mode = 3;
       timer = 300;
+      orderCount = 0;
     } else if(
       mouseX >= cX - 50 &&
       mouseX <= cX + 50 &&
       mouseY >= cY - 140 &&
       mouseY <= cY + 0
     ) {
-      console.log("CLICKED");
+      if(!orderAccepted){
+        orderCount++;
+      }
       orderAccepted = true;
     }
   } else if (mode == 3){
