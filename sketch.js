@@ -715,6 +715,39 @@ function mouseClicked() {
         ){
           console.log("CLICKED BOBA");
           steps["boba"] = true;
+        } else if( // SYRUP:     rect(width/2+150, height/2-200, 60, 140);
+          mouseX >= width/2+150 &&
+          mouseX <= width/2+210 &&
+          mouseY >= height/2-200 &&
+          mouseY <= height/2+30 &&
+          steps["cup"] &&
+          steps["boba"] &&
+          (steps["matcha"] || steps["thai"] || steps["taro"])
+        ){
+          console.log("CLICKED SYRUP");
+          steps["syrup"] = true;
+        } else if( // HONEY: rect(width/2+250, height/2-200, 60, 140);
+          mouseX >= width/2+250 &&
+          mouseX <= width/2+260 &&
+          mouseY >= height/2-200 &&
+          mouseY <= height/2-60 &&
+          steps["cup"] &&
+          steps["boba"] &&
+          (steps["matcha"] || steps["thai"] || steps["taro"])
+        ){
+          console.log("CLICKED HONEY");
+          steps["honey"] = true;
+        } else if( // MILK: rect(width/2+350, height/2-200, 60, 140);
+          mouseX >= width/2+350 &&
+          mouseX <= width/2+410 &&
+          mouseY >= height/2-200 &&
+          mouseY <= height/2-60 &&
+          steps["cup"] &&
+          steps["boba"] &&
+          (steps["matcha"] || steps["thai"] || steps["taro"])
+        ){
+          console.log("CLICKED MILK");
+          steps["milk"] = true;
         }
     }
   } else if (mode == 3){
