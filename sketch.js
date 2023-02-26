@@ -22,6 +22,7 @@ function preload(){
   cafe = loadImage('graphics/Cafe.png');
   robot = loadImage('graphics/Robot.png');
   brownbt = loadImage('graphics/Brown Boba Tea.png');
+  purplebt = loadImage('graphics/Purple Boba Tea.png');
 }
 
 function setup() {
@@ -52,8 +53,8 @@ function homeScreen() {
   // Boba Tea Background
   for(let i = -300; i < height; i += 250){
     for(let j = -300; j < width; j += 250){
-      image(brownbt, j, i);
-      brownbt.resize(130, 160);
+      image(purplebt, j, i);
+      purplebt.resize(130, 160);
     }
   }
 
@@ -229,6 +230,14 @@ function play() {
 }
 
 function endScreen() {
+  // Boba Tea Background
+  for(let i = -300; i < height; i += 250){
+    for(let j = -300; j < width; j += 250){
+      image(brownbt, j, i);
+      brownbt.resize(130, 160);
+    }
+  }
+
   // Menu Box
   noStroke();
   fill('#EEDFD4');
