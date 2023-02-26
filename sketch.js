@@ -23,7 +23,12 @@ let syrup;
 let taro;
 let thai;
 let milk;
+
 let brownbt;
+
+let halfbrown;
+let halfgreen;
+let halfpurple;
 
 let liquids;
 let tea;
@@ -68,7 +73,11 @@ function preload(){
   robot = loadImage('graphics/Robot.png');
 
   emptyCup = loadImage('graphics/Empty Cup.png');
-  bobaInACup = loadImage('graphics/Boba In A Cup.png')
+  bobaInACup = loadImage('graphics/Boba In A Cup.png');
+
+  halfbrown = loadImage('graphics/Brown Boba Half Cup.png');
+  halfgreen = loadImage('graphics/Green Boba Half Cup.png');
+  halfpurple = loadImage('graphics/Purple Boba Half Cup.png');
 
   honey = loadImage('graphics/Honey.png');
   matcha = loadImage('graphics/Matcha Powder.png');
@@ -311,7 +320,7 @@ function play() {
         } else if(steps["milk"]){
 
         } else{
-          
+          image(halfgreen, width/2, height/2 + 70, 400, 300);
         }
       }
       if(steps["taro"]){
@@ -322,7 +331,7 @@ function play() {
         } else if(steps["milk"]){
 
         } else{
-          
+          image(halfpurple, width/2, height/2 + 70, 400, 300);
         }
       }
       if(steps["thai"]){
@@ -333,7 +342,7 @@ function play() {
         } else if(steps["milk"]){
 
         } else{
-          
+          image(halfbrown, width/2, height/2 + 70, 400, 300);
         }
       }
       
@@ -668,26 +677,35 @@ function mouseClicked() {
           mouseX >= width/2-260 &&
           mouseX <= width/2-185 &&
           mouseY >= height/2-140 &&
-          mouseY <= height/2-65
+          mouseY <= height/2-65 &&
+          steps["cup"]
         ){
           console.log("CLICKED THAI");
           steps["thai"] = true;
+          steps["taro"] = false;
+          steps["matcha"] = false;
         } else if( // TARO:     rect(width/2-340, height/2-140, 75, 75);
           mouseX >= width/2-340 &&
           mouseX <= width/2-265 &&
           mouseY >= height/2-140 &&
-          mouseY <= height/2-65
+          mouseY <= height/2-65 &&
+          steps["cup"]
         ){
           console.log("CLICKED TARO");
           steps["taro"] = true;
+          steps["thai"] = false;
+          steps["matcha"] = false;
         } else if( // MATCHA:     rect(width/2-420, height/2-140, 75, 75);
           mouseX >= width/2-420 &&
           mouseX <= width/2-345 &&
           mouseY >= height/2-140 &&
-          mouseY <= height/2-65
+          mouseY <= height/2-65 &&
+          steps["cup"] 
         ){
           console.log("CLICKED MATCHA");
           steps["matcha"] = true;
+          steps["taro"] = false;
+          steps["thai"] = false;
         } else if( // BOBA: rect(width/2-20, height/2-200, 145, 170);
           mouseX >= width/2-20 &&
           mouseX <= width/2+345 &&
