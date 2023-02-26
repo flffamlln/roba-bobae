@@ -7,6 +7,7 @@ let syrup;
 let taro;
 let thai;
 let milk;
+let cafe;
 
 function preload(){
   honey = loadImage('graphics/Honey.png');
@@ -15,6 +16,7 @@ function preload(){
   taro = loadImage('graphics/Taro Powder.png');
   thai = loadImage('graphics/Thai Tea.png');
   milk = loadImage('graphics/Whole Milk.png');
+  cafe = loadImage('graphics/Cafe.png');
 }
 
 function setup() {
@@ -33,9 +35,8 @@ function draw() {
   } else if (mode == 1) {
     introScreen();
   } else if (mode == 2) {
-    screen3();
+    play();
   }
-  
 }
 
 // Useful to have multiple elements on one screen
@@ -95,6 +96,8 @@ function homeScreen() {
 
 // Intro Screen
 function introScreen() {
+  imageMode(CORNER);
+
   // Background
   noStroke();
   background('#FCF5F0');
@@ -120,6 +123,20 @@ function introScreen() {
   }
 
   instructions();
+
+  // Skip Instructions Button
+   strokeWeight(1);
+   stroke(0);
+   fill("#EEDFD4");
+   rectMode(CENTER);
+   rect(width/2, height/2 + 100, 200, 50, 15);
+
+   // Skip Instructions Text
+   noStroke();
+   fill(0);
+   textSize(16);
+   text("Skip Introduction", width/2, height/2 + 105);
+   textAlign(CENTER);
 }
 
 function instructions(){
@@ -134,25 +151,18 @@ function instructions(){
   let txt;
   if (instruction == 0) {
     txt = "Welcome to roba-boba! (1/8)"
-
   } else if (instruction == 1) {
     txt = "A hundred years into the future, \n humans have migrated outside of planet Earth. (2/8)"
-
   } else if (instruction == 2) {
     txt = "Robots have also gained consciousness. \n Thankfully they aren't trying to overrun the world. (3/8)"
-
   } else if (instruction == 3) {
     txt = "A couple of robots have decided to \n pursue their passion project of  \n opening their very own boba shop! (4/8)"
-
   } else if (instruction == 4) {
     txt = "You are a newly hired robot boba barista. (5/8)"
-
   } else if (instruction == 5) {
     txt = "Try to keep up and serve as many delicious \n boba teas to customers before the timer runs out! (6/8)"
-
   } else if (instruction == 6) {
     txt = "Remember, customers care about \n drinks made accurately!!! \n This will reflect in your point accumulation. (7/8)"
-
   } else if (instruction == 7) {
     txt = "Good luck!!! (8/8)"
   }
@@ -164,7 +174,10 @@ function instructions(){
   textAlign(CENTER);
 }
 
-function screen3() {
+function play() {
+  imageMode(CENTER);
+  image(cafe, width/2, height/2, 800, 600);
+
   line(0, 0, windowWidth, windowHeight);
   line(0, windowWidth, windowWidth, 0);
 }
@@ -184,11 +197,21 @@ function mousePressed() {
         mode = 1;
     }
   } else if (mode == 1) {
-    if(instruction < 7){
-      instruction++;
-    } else{
+    // If press skip intro button
+    if(
+      mouseX <= width/2 + 110 &&
+      mouseX >= width/2 - 110 &&
+      mouseY <= height/2 + 130 &&
+      mouseY >= height/2 + 70){
       instruction = 0;
       mode = 2;
+    } else{ // If press outside skip intro button
+      if(instruction < 7){
+        instruction++;
+      } else{
+        instruction = 0;
+        mode = 2;
+      }
     }
   } else if (mode == 2) {
     mode = 0;
