@@ -324,12 +324,13 @@ function endScreen() {
   }
 
   // Menu Box
-  noStroke();
+  strokeWeight(5);
   fill('#EEDFD4');
+  stroke("#88716F");
   rectMode(CENTER);
   rect(width/2, height/2, 500, 650, 15);
 
-  // Roba-boba Logo
+  // Game over
   strokeWeight(5);
   stroke(255);
   fill('#826464');
