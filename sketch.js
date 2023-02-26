@@ -351,7 +351,7 @@ function endScreen() {
   stroke('#629742');
   fill('#B4D1AB');
   textSize(50);
-  text('100 pts!', width/2, height/2 + 30);
+  text(points + ' pts!', width/2, height/2 + 30);
   textAlign(CENTER);
 
   // Play Button Box
