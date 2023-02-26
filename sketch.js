@@ -394,7 +394,7 @@ function play() {
   noStroke();
   fill(0);
   textSize(18);
-  text("Orders to make: " + orderCount, width/2 - 330, height/2 + 250);
+  text("Total orders taken: " + orderCount, width/2 - 330, height/2 + 250);
 
   // Points Box
   strokeWeight(5);
@@ -484,7 +484,7 @@ function endScreen() {
   stroke('#629742');
   fill('#B4D1AB');
   textSize(50);
-  text('Your Score Is', width/2, height/2 - 30);
+  text('Great Job!', width/2, height/2 - 30);
   textAlign(CENTER);
 
   // Score Text
@@ -576,7 +576,7 @@ function mouseClicked() {
       mouseY <= 75
     ){
       mode = 3;
-      timer = 300;
+      timer = 60;
       orderCount = 0;
       steps = {
         "cup": false, 
@@ -602,8 +602,7 @@ function mouseClicked() {
           mouseY <= cY + 0
         ){
           if(!orderAccepted){
-            orderCount++;
-            
+            orderCount++;            
             orders.push({
               "tea": teaStr[Math.floor(Math.random() * 3)],
               "liquid": liquidsStr[Math.floor(Math.random() * 3)],
