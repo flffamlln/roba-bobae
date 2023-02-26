@@ -27,6 +27,9 @@ let cIndex;
 let cX;
 let cY;
 
+let newOrder;
+let orderReceived;
+
 function preload(){
   honey = loadImage('graphics/Honey.png');
   matcha = loadImage('graphics/Matcha Powder.png');
@@ -48,13 +51,16 @@ function preload(){
   customer7 = loadImage('graphics/Customer7.png');
   customer8 = loadImage('graphics/Customer8.png');
   customer9 = loadImage('graphics/Customer9.png');
+
+  newOrder = loadImage('graphics/New Order.png');
+  orderReceived = loadImage('graphics/Order Received.png');
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     cIndex = 0;
     cX = width - 400;
-    cY = height/2 + 30;
+    cY = height/2 + 70;
 }
 
 function windowResized() {
@@ -183,13 +189,13 @@ function introScreen() {
    noStroke();
    fill(0);
    textSize(16);
-   text("Skip Introduction", width/2, height/2 + 105);
+   text("Skip Introduction ->", width/2, height/2 + 105);
    textAlign(CENTER);
 }
 
 function instructions(){
   // Instruction box
-  strokeWeight(1);
+  strokeWeight(2);
   stroke(0);
   fill(255);
   rectMode(CENTER);
@@ -246,7 +252,7 @@ function play() {
   fill(0);
   textSize(36);
   textAlign(LEFT);
-  text("Time left: " + timer, 50, 50);
+  text("Time left: " + timer + " seconds", 50, 50);
 
   // Updating time after each second
   if (frameCount % 60 == 0 && timer > 0) {
@@ -316,9 +322,12 @@ function endScreen() {
 function enterCustomer(){
   //Render all customers
   let customers = [customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9];
-  
+
   image(customers[cIndex], cX, cY);
-  customers[cIndex].resize(700, 700);
+  customers[cIndex].resize(600, 500);
+
+  image(newOrder, cX, cY - 130);
+  newOrder.resize(100, 100);
 
   cX -= Math.random() * 3;
 
