@@ -16,6 +16,9 @@ let brownbt;
 
 let liquids;
 let tea;
+
+let liquidsStr;
+let teaStr;
 let boba;
 
 let customer1;
@@ -38,6 +41,7 @@ let orderReceived;
 let orderAccepted;
 
 let orderCount = 0;
+let curOrder = 0;
 
 let orders = [];
 let points = 0;
@@ -180,7 +184,9 @@ function introScreen() {
 
   // Render all ingredients
   liquids = [honey, syrup, milk];
+  liquidsStr = ["honey", "syrup", "milk"];
   tea = [matcha, taro, thai];
+  teaStr = ["matcha", "taro", "thai"];
   boba = ["yes", "no"];
 
   for(let i = 0; i < liquids.length; i++){
@@ -273,6 +279,26 @@ function play() {
     // Add kitchen background
     imageMode(CENTER);
     image(kitchen, width/2, height/2, 900, 600);
+
+    if(orders.length > 0){
+      // Show current order
+      strokeWeight(1);
+      stroke(1);
+      fill('#EEDFD4');
+      rect(160, 400, 250, 400, 0);
+
+      // Order count
+      textAlign(LEFT);
+      noStroke();
+      fill(0);
+      textSize(18);
+      text("Order #: " + (curOrder + 1), width/2 - 690, height/2 - 180);
+
+      text("Tea: " + orders[curOrder]["tea"], width/2 - 640, height/2 - 140);
+      text("Liquid: " + orders[curOrder]["liquid"], width/2 - 640, height/2 - 100);
+      text("Boba: " + orders[curOrder]["boba"], width/2 - 640, height/2 - 60);
+    }
+
   }
 
   // Order count
@@ -282,7 +308,22 @@ function play() {
   textSize(18);
   text("Orders to make: " + orderCount, width/2 - 330, height/2 + 250);
 
+  // Points Box
+  strokeWeight(5);
+  stroke("#BBADD3");
+  fill("#EDEAF5");
+  rect(width - 200, 150, 200, 50, 15);
+
+  // Points Text
+  textSize(24);
+  strokeWeight(5);
+  stroke(255);
+  fill(0);
+  text("Points: " + points, width-250, 160);
+  textAlign(CENTER);
+
   // Quit Button
+  textAlign(LEFT);
   strokeWeight(5);
   stroke('#629742');
   fill('#B4D1AB');
@@ -293,20 +334,6 @@ function play() {
   fill(0);
   textSize(24);
   text("End game", width-250, 60);
-  textAlign(CENTER);
-
-  // Points Box
-  strokeWeight(5);
-  stroke("#BBADD3");
-  fill("#EDEAF5");
-  rect(200, height-50, 200, 50, 15);
-
-  // Points Text
-  textSize(24);
-  strokeWeight(5);
-  stroke(255);
-  fill(0);
-  text("Points: " + points, 160, height-39);
   textAlign(CENTER);
 
   // Time left text
@@ -324,6 +351,7 @@ function play() {
   if (timer == 0) {
     mode = 3;
     orderCount = 0;
+    curOrder = 0;
     orders = [];
     makingDrinks = false;
   }
@@ -452,6 +480,7 @@ function mouseClicked() {
       mode = 3;
       timer = 300;
       orderCount = 0;
+      curOrder = 0;
       orders = [];
       makingDrinks = false;
       orderAccepted = false;
@@ -468,8 +497,8 @@ function mouseClicked() {
             orderCount++;
             
             orders.push({
-              "tea": tea[Math.floor(Math.random() * 3)],
-              "liquid": liquids[Math.floor(Math.random() * 3)],
+              "tea": teaStr[Math.floor(Math.random() * 3)],
+              "liquid": liquidsStr[Math.floor(Math.random() * 3)],
               "boba": boba[Math.floor(Math.random() * 2)]
             });
           }
