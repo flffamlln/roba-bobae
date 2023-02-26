@@ -12,6 +12,10 @@ let cafe;
 let robot;
 let brownbt;
 
+let liquids;
+let tea;
+let boba;
+
 let customer1;
 let customer2;
 let customer3;
@@ -35,6 +39,7 @@ let orderCount = 0;
 
 let orders = [];
 let points = 0;
+let makingDrinks = false;
 
 function preload(){
   honey = loadImage('graphics/Honey.png');
@@ -169,15 +174,16 @@ function introScreen() {
   rect(0, 600, 1000, 100);
 
   // Render all ingredients
-  let liquids = [honey, syrup, milk];
-  let powders = [matcha, taro, thai];
+  liquids = [honey, syrup, milk];
+  tea = [matcha, taro, thai];
+  boba = ["yes", "no"];
 
   for(let i = 0; i < liquids.length; i++){
     image(liquids[i], 50 + 120 * i, 400);
     liquids[i].resize(175, 275);
 
-    image(powders[i], 120 * i, 0);
-    powders[i].resize(300, 300);
+    image(tea[i], 120 * i, 0);
+    tea[i].resize(300, 300);
   }
 
   // Render Robot
@@ -245,17 +251,21 @@ function instructions(){
 }
 
 function play() {
-  // Add cafe background
-  imageMode(CENTER);
-  image(cafe, width/2, height/2, 800, 600);
+  if(!makingDrinks){
+    // Add cafe background
+    imageMode(CENTER);
+    image(cafe, width/2, height/2, 800, 600);
 
-  // Order count
-  noStroke();
-  fill(0);
-  textSize(24);
-  text("Orders to make: " + orderCount, width/2 - 330, height/2 + 250);
+    // Order count
+    noStroke();
+    fill(0);
+    textSize(24);
+    text("Orders to make: " + orderCount, width/2 - 330, height/2 + 250);
 
-  enterCustomer();
+    enterCustomer();
+  } else{
+
+  }
 
   // Quit Button
   strokeWeight(5);
@@ -299,6 +309,8 @@ function play() {
   if (timer == 0) {
     mode = 3;
     orderCount = 0;
+    orders = [];
+    makingDrinks = false;
   }
 }
 
@@ -415,7 +427,7 @@ function mouseClicked() {
     }
   } else if (mode == 2) {
     if(
-      // click end game
+      // Clicked end game button
       mouseX >= width - 300 &&
       mouseX <= width - 100 &&
       mouseY >= 25 &&
@@ -424,7 +436,9 @@ function mouseClicked() {
       mode = 3;
       timer = 300;
       orderCount = 0;
-    } else if(
+      orders = [];
+      makingDrinks = false;
+    } else if( // Clicked on a message bubble
       mouseX >= cX - 50 &&
       mouseX <= cX + 50 &&
       mouseY >= cY - 140 &&
@@ -432,8 +446,22 @@ function mouseClicked() {
     ) {
       if(!orderAccepted){
         orderCount++;
+        
+        orders.push({
+          "tea": tea[Math.floor(Math.random() * 3)],
+          "liquid": liquids[Math.floor(Math.random() * 3)],
+          "boba": boba[Math.floor(Math.random() * 2)]
+        });
       }
       orderAccepted = true;
+    } else if(  // Clicked on Make Drinks button
+      mouseX >= width/2 + 40 &&
+      mouseX <= width/2 + 340 &&
+      mouseY >= height/2 + 170 &&
+      mouseY <= height/2 + 250
+    ){
+      makingDrinks = true;
+      console.log("CLICKED");
     }
   } else if (mode == 3){
     mode = 0;
