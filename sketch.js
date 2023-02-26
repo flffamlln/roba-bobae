@@ -635,7 +635,7 @@ function mouseClicked() {
             orders.push({
               "tea": teaStr[Math.floor(Math.random() * 3)],
               "liquid": liquidsStr[Math.floor(Math.random() * 3)],
-              "boba": boba[Math.floor(Math.random() * 2)]
+              "boba": boba[Math.floor(Math.random() * 1)]
             });
           }
           orderAccepted = true;
