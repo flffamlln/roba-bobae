@@ -708,7 +708,7 @@ function mouseClicked() {
           steps["thai"] = false;
         } else if( // BOBA: rect(width/2-20, height/2-200, 145, 170);
           mouseX >= width/2-20 &&
-          mouseX <= width/2+345 &&
+          mouseX <= width/2+125 &&
           mouseY >= height/2-140 &&
           mouseY <= height/2-65 &&
           steps["cup"]
@@ -726,9 +726,11 @@ function mouseClicked() {
         ){
           console.log("CLICKED SYRUP");
           steps["syrup"] = true;
+          steps["milk"] = false;
+          steps["honey"] = false;
         } else if( // HONEY: rect(width/2+250, height/2-200, 60, 140);
           mouseX >= width/2+250 &&
-          mouseX <= width/2+260 &&
+          mouseX <= width/2+310 &&
           mouseY >= height/2-200 &&
           mouseY <= height/2-60 &&
           steps["cup"] &&
@@ -737,6 +739,8 @@ function mouseClicked() {
         ){
           console.log("CLICKED HONEY");
           steps["honey"] = true;
+          steps["milk"] = false;
+          steps["syrup"] = false;
         } else if( // MILK: rect(width/2+350, height/2-200, 60, 140);
           mouseX >= width/2+350 &&
           mouseX <= width/2+410 &&
@@ -748,6 +752,8 @@ function mouseClicked() {
         ){
           console.log("CLICKED MILK");
           steps["milk"] = true;
+          steps["honey"] = false;
+          steps["syrup"] = false;
         }
     }
   } else if (mode == 3){
