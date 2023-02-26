@@ -361,64 +361,7 @@ function play() {
           image(halfbrown, width/2, height/2 + 70, 400, 300);
         }
       }
-      
-
     }
-    // Rect for cups
-    noFill();
-    stroke(0);
-    strokeWeight(4);
-    rectMode(CORNER);
-    rect(width/2-165, height/2-160, 70, 70);
-
-    // Rect for thai
-    noFill();
-    stroke(0);
-    strokeWeight(4);
-    rectMode(CORNER);
-    rect(width/2-260, height/2-140, 75, 75);
-
-    // Rect for taro
-    noFill();
-    stroke(0);
-    strokeWeight(4);
-    rectMode(CORNER);
-    rect(width/2-340, height/2-140, 75, 75);
-
-    // Rect for matcha
-    noFill();
-    stroke(0);
-    strokeWeight(4);
-    rectMode(CORNER);
-    rect(width/2-420, height/2-140, 75, 75);
-
-    // Rect for boba
-    noFill();
-    stroke(0);
-    strokeWeight(4);
-    rectMode(CORNER);
-    rect(width/2-20, height/2-200, 145, 170);
-
-    // Rect for syrup
-    noFill();
-    stroke(0);
-    strokeWeight(4);
-    rectMode(CORNER);
-    rect(width/2+150, height/2-200, 60, 140);
-
-    // Rect for honey
-    noFill();
-    stroke(0);
-    strokeWeight(4);
-    rectMode(CORNER);
-    rect(width/2+250, height/2-200, 60, 140);
-
-    // Rect for milk
-    noFill();
-    stroke(0);
-    strokeWeight(4);
-    rectMode(CORNER);
-    rect(width/2+350, height/2-200, 60, 140);
 
     rectMode(CENTER);
     if(orders.length > 0){
@@ -432,12 +375,16 @@ function play() {
       textAlign(LEFT);
       noStroke();
       fill(0);
-      textSize(18);
+      textSize(16);
       text("Order #: " + (curOrder + 1), width/2 - 690, height/2 - 180);
 
-      text("Tea: " + orders[curOrder]["tea"], width/2 - 640, height/2 - 140);
-      text("Liquid: " + orders[curOrder]["liquid"], width/2 - 640, height/2 - 100);
-      text("Boba: " + orders[curOrder]["boba"], width/2 - 640, height/2 - 60);
+      text("Tea: " + orders[curOrder]["tea"], width/2 - 690, height/2 - 140);
+      text("Liquid: " + orders[curOrder]["liquid"], width/2 - 690, height/2 - 100);
+      text("Boba: " + orders[curOrder]["boba"], width/2 - 690, height/2 - 60);
+
+      text("Order to make boba: ", width/2 - 690, height/2 + 20);
+      text("Cup -> Boba -> Tea -> Liquids!", width/2 - 700, height/2 + 50);
+
     }
 
   }
