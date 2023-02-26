@@ -12,6 +12,17 @@ let cafe;
 let robot;
 let brownbt;
 
+let customer1;
+let customer2;
+let customer3;
+let customer4;
+let customer5;
+let customer6;
+let customer7;
+let customer8;
+let customer9;
+let customer10;
+
 function preload(){
   honey = loadImage('graphics/Honey.png');
   matcha = loadImage('graphics/Matcha Powder.png');
@@ -23,6 +34,17 @@ function preload(){
   robot = loadImage('graphics/Robot.png');
   brownbt = loadImage('graphics/Brown Boba Tea.png');
   purplebt = loadImage('graphics/Purple Boba Tea.png');
+
+  customer1 = loadImage('graphics/Customer1.png');
+  customer2 = loadImage('graphics/Customer2.png');
+  customer3 = loadImage('graphics/Customer3.png');
+  customer4 = loadImage('graphics/Customer4.png');
+  customer5 = loadImage('graphics/Customer5.png');
+  customer6 = loadImage('graphics/Customer6.png');
+  customer7 = loadImage('graphics/Customer7.png');
+  customer8 = loadImage('graphics/Customer8.png');
+  customer9 = loadImage('graphics/Customer9.png');
+  customer10 = loadImage('graphics/Customer10.png');
 }
 
 function setup() {
@@ -281,6 +303,15 @@ function endScreen() {
   textSize(30);
   text('Return Home', width/2, height/2 + 160);
   textAlign(CENTER);
+}
+
+function enterCustomer(){
+  //Render all customers
+  customers = [customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10];
+  for(let i = 0; i < customers.length; i++){
+    image(customers[i], 70 + 150 * i, 250);
+    customers[i].resize(175, 275);
+  }
 }
 
 function mousePressed() {
