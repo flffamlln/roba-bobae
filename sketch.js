@@ -1,6 +1,6 @@
 let mode = 0;
 let instruction = 0;
-let timer = 300;
+let timer = 60;
 
 let steps = {
   "cup": false, 
@@ -602,6 +602,7 @@ function mouseClicked() {
           mouseY <= cY + 0
         ){
           if(!orderAccepted){
+            points += 10;
             orderCount++;            
             orders.push({
               "tea": teaStr[Math.floor(Math.random() * 3)],
@@ -632,6 +633,9 @@ function mouseClicked() {
         mouseY >= height/2-180 &&
         mouseY <= height/2-110
       ){
+        if(!steps["cups"]){
+          points += 20;
+        }
         console.log("CLICKED CUPS");
         steps["cup"] = true;
       } else if(
