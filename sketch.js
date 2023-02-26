@@ -33,6 +33,9 @@ let orderAccepted;
 
 let orderCount = 0;
 
+let orders = [];
+let points = 0;
+
 function preload(){
   honey = loadImage('graphics/Honey.png');
   matcha = loadImage('graphics/Matcha Powder.png');
@@ -161,18 +164,18 @@ function introScreen() {
   stroke(0);
   fill('#F1DFEC');
   rectMode(CENTER);
-  rect(0, 200, 1200, 100);
-  rect(0, 480, 1200, 100);
+  rect(0, 200, 1000, 100);
+  rect(0, 600, 1000, 100);
 
   // Render all ingredients
   let liquids = [honey, syrup, milk];
   let powders = [matcha, taro, thai];
 
   for(let i = 0; i < liquids.length; i++){
-    image(liquids[i], 70 + 150 * i, 250);
+    image(liquids[i], 50 + 120 * i, 400);
     liquids[i].resize(175, 275);
 
-    image(powders[i], 150 * i, 0);
+    image(powders[i], 120 * i, 0);
     powders[i].resize(300, 300);
   }
 
@@ -183,25 +186,25 @@ function introScreen() {
   instructions();
 
   // Skip Instructions Button
-   strokeWeight(1);
-   stroke(0);
-   fill("#B4D1AB");
+   strokeWeight(5);
+   stroke('#629742');
+   fill('#B4D1AB');
    rectMode(CENTER);
-   rect(width/2, height/2 + 100, 200, 50, 15);
+   rect(width/2, height/2 + 170, 200, 50, 15);
 
    // Skip Instructions Text
    noStroke();
    fill(0);
    textSize(16);
-   text("Skip Introduction ->", width/2, height/2 + 105);
+   text("Skip Introduction ->", width/2, height/2 + 170);
    textAlign(CENTER);
 }
 
 function instructions(){
   // Instruction box
-  strokeWeight(2);
-  stroke(0);
-  fill(255);
+  strokeWeight(5);
+  stroke("#61A6C3");
+  fill("#B1DBE6");
   rectMode(CENTER);
   rect(width/2, height/2, 500, 200, 15);
 
@@ -241,14 +244,14 @@ function play() {
   noStroke();
   fill(0);
   textSize(24);
-  text("Order count: " + orderCount, width/2 - 330, height/2 + 250);
+  text("Orders to make: " + orderCount, width/2 - 330, height/2 + 250);
 
   enterCustomer();
 
   // Quit Button
-  strokeWeight(1);
-  stroke(0);
-  fill("#B4D1AB");
+  strokeWeight(5);
+  stroke('#629742');
+  fill('#B4D1AB');
   rect(width - 200, 50, 200, 50, 15);
 
   // Quit Text
@@ -256,6 +259,20 @@ function play() {
   fill(0);
   textSize(24);
   text("End game", width-250, 60);
+  textAlign(CENTER);
+
+  // Points Box
+  strokeWeight(5);
+  stroke("#BBADD3");
+  fill("#EDEAF5");
+  rect(200, height-50, 200, 50, 15);
+
+  // Points Text
+  textSize(24);
+  strokeWeight(5);
+  stroke(255);
+  fill(0);
+  text("Points: " + points, 160, height-39);
   textAlign(CENTER);
 
   // Time left text
