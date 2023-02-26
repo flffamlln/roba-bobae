@@ -439,6 +439,7 @@ function mouseClicked() {
       orderCount = 0;
       orders = [];
       makingDrinks = false;
+      orderAccepted = false;
     } else if( // Clicked on a message bubble
       mouseX >= cX - 50 &&
       mouseX <= cX + 50 &&
